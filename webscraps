@@ -11,7 +11,7 @@ strong = parent.find("strong")
 print(strong.string)
 
 
-
+=============================================
 
 with open("index2.html", "r") as f:
 	doc = BeautifulSoup(f, "html.parser")
@@ -22,6 +22,8 @@ for tag in tags:
 
 with open("changed.html","w") as file:
 	file.write(str(doc))
+
+=============================================
 from bs4 import BeautifulSoup
 import requests
 
