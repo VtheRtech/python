@@ -1,0 +1,11 @@
+searching example
+
+url = "https://www.newegg.com/sapphire-radeon-rx-6700-xt-11306-01-20g/p/N82E16814202399?Item=N82E16814202399&Description=rx%206700%20xt&cm_re=rx_6700%20xt-_-14-202-399-_-Product&quicklink=true"
+
+result = requests.get(url)
+doc = BeautifulSoup(result.text, "html.parser")
+
+prices = doc.find_all(text="$")
+parent = prices[0].parent
+strong = parent.find("strong")
+print(strong.string)
