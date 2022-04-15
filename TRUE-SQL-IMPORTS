@@ -1,0 +1,27 @@
+import pyodbc
+import pandas as pd
+
+conn = pyodbc.connect (
+    Trusted_Connected = "Yes",
+    Driver ='{ODBC Driver 17 for SQL Server}',
+    Server ='REINES\Makhovist',
+    Database ='freeproject'
+)
+
+cursor = conn.cursor()
+
+df = pd.read_csv("C:/Users/grimm/Desktop/Data/py files/BO3_webNS_cs_policies111.csv")
+
+cursor.execute("CREATE TABLE Blackbaud ('Policy Name varchar(max)', 'Rule Value varchar(max)', 'Hits bigint)'], dtype='object')")
+
+for row in df.itertuples():
+    cursor.execute('''
+                INTERT INTO freeproject.dbo.Blackbaud (Policy Name, Rule Value, Hits)
+                VALUES(?,?,?)
+                ''',
+                row.Policy Name,
+                row.Rule Value,
+                row.Hits,
+                )
+    
+    conn.commit ()
